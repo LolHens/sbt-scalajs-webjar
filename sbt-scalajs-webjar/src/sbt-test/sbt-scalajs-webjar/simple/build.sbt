@@ -22,7 +22,7 @@ lazy val backend = project
     scalaVersion := "2.13.1",
 
     Compile / compile := {
-      println((frontend / Compile / webjarMainResource).value)
+      println((frontend / Compile / webjarMainResources).value)
 
       (Compile / compile).value
     }

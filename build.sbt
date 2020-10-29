@@ -61,8 +61,9 @@ lazy val `sbt-scalajs-webjar` = project
   .settings(commonSettings)
   .settings(
     name := "sbt-scalajs-webjar",
+    //logLevel := Level.Debug,
 
-    addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.0.1")
+    addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.3.0")
   )
 
 lazy val `sbt-scalajs-bundler-webjar` = project
@@ -71,6 +72,7 @@ lazy val `sbt-scalajs-bundler-webjar` = project
   .settings(commonSettings)
   .settings(
     name := "sbt-scalajs-bundler-webjar",
+    //logLevel := Level.Debug,
 
-    addSbtPlugin("ch.epfl.scala" % "sbt-scalajs-bundler" % "0.19.0")
+    addSbtPlugin("ch.epfl.scala" % "sbt-scalajs-bundler" % "0.20.0")
   )

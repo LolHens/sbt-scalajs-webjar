@@ -1,6 +1,6 @@
 package de.lolhens.sbt.scalajs.webjar
 
-import de.lolhens.sbt.scalajs.webjar.ScalaJSWebjarPlugin.stagedOptJS
+import de.lolhens.sbt.scalajs.webjar.ScalaJSWebjarPlugin.stagedLinkJS
 import de.lolhens.sbt.scalajs.webjar.WebjarPlugin.autoImport._
 import sbt.Keys._
 import sbt._
@@ -12,10 +12,10 @@ object ScalaJSBundlerWebjarPlugin extends AutoPlugin {
 
   override lazy val projectSettings: Seq[Setting[_]] =
     Seq(
-      Compile / webjarMainResourceName := stagedOptJS(Compile / _ / artifactPath).value.name.stripSuffix(".js") + "-bundle.js",
+      Compile / webjarMainResourceNames := Seq(stagedLinkJS(Compile / _ / artifactPath).value.name.stripSuffix(".js") + "-bundle.js"),
 
       Compile / webjarArtifacts := {
-        val attributedFiles = stagedOptJS(Compile / _ / webpack).value
+        val attributedFiles = stagedLinkJS(Compile / _ / webpack).value
         val target = (Compile / webjarArtifacts / crossTarget).value
 
         val artifacts = Seq(

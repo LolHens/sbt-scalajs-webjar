@@ -20,7 +20,10 @@ class WebjarProject(val self: Project) extends AnyVal {
 
         self / Compile / webjarResourcePath := s"META-INF/resources/webjars/${(self / normalizedName).value}/${(self / version).value}",
 
-        self / Compile / webjarMainResource := (self / Compile / webjarResourcePath).value + "/" + (self / Compile / webjarMainResourceName).value,
+        self / Compile / webjarMainResources := {
+          val resourcePath = (self / Compile / webjarResourcePath).value
+          (self / Compile / webjarMainResourceNames).value.map(resourcePath + "/" + _)
+        },
 
         self / Compile / webjarArtifacts / crossTarget := {
           (Compile / classDirectory).value.toPath.resolve((self / Compile / webjarResourcePath).value).toFile
